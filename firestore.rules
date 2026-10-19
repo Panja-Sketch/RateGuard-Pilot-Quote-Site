@@ -1,0 +1,13 @@
+rules_version = '2';
+
+// Firestore is accessed ONLY by the Cloud Run API through the server client library (which bypasses
+// these rules). No browser client may read or write any document: roles, versions, submissions and
+// audit data are authorised by the API, not by client-side Firestore access.
+// NOT deployed by anything in this repository.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

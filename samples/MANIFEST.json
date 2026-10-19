@@ -1,0 +1,62 @@
+{
+  "PA_NAT_v2_current.xlsx": {
+    "description": "Template / baseline: the current synthetic national rate tables for personal-auto in Pilot Rate Workbook Profile v1. Importing it unchanged produces no changes.",
+    "expect": "imports cleanly; zero changes"
+  },
+  "HO_NAT_v2_current.xlsx": {
+    "description": "Template / baseline: the current synthetic national rate tables for homeowners in Pilot Rate Workbook Profile v1. Importing it unchanged produces no changes.",
+    "expect": "imports cleanly; zero changes"
+  },
+  "CP_NAT_v2_current.xlsx": {
+    "description": "Template / baseline: the current synthetic national rate tables for commercial-property in Pilot Rate Workbook Profile v1. Importing it unchanged produces no changes.",
+    "expect": "imports cleanly; zero changes"
+  },
+  "BOP_NAT_v2_current.xlsx": {
+    "description": "Template / baseline: the current synthetic national rate tables for bop in Pilot Rate Workbook Profile v1. Importing it unchanged produces no changes.",
+    "expect": "imports cleanly; zero changes"
+  },
+  "HO_NAT_rate_change_plus4pct.xlsx": {
+    "description": "Normal synthetic rate change: base rates +4.0% for homeowners.",
+    "expect": "imports cleanly; validates; base-rate rows change by +4%"
+  },
+  "PA_NAT_rate_change_plus4pct.xlsx": {
+    "description": "Normal synthetic rate change: base rates +4.0% for personal-auto.",
+    "expect": "imports cleanly; validates; base-rate rows change by +4%"
+  },
+  "HO_NAT_defect_silent.xlsx": {
+    "description": "INTENTIONAL DEFECT (silent): roof age >= 21 factor 1.35 -> 1.25. Structurally valid, so the pilot's own validation passes it (with an impact warning).",
+    "expect": "imports; validates; one table row changed"
+  },
+  "HO_NAT_defect_structural.xlsx": {
+    "description": "INTENTIONAL DEFECTS (structural): ROOF_AGE: second band now ends one unit early (range gap); CONSTR: first row factor multiplied by 100 (decimal typo); FOUNDATION: row for \"pier\" deleted (incomplete table).",
+    "expect": "imports as a draft but FAILS validation"
+  },
+  "PA_NAT_defect_silent.xlsx": {
+    "description": "INTENTIONAL DEFECT (silent): 1 major violation factor 1.8 -> 1.08 (dropped digit). Structurally valid, so the pilot's own validation passes it (with an impact warning).",
+    "expect": "imports; validates; one table row changed"
+  },
+  "PA_NAT_defect_structural.xlsx": {
+    "description": "INTENTIONAL DEFECTS (structural): DRIVER_AGE: second band now ends one unit early (range gap); MARITAL: first row factor multiplied by 100 (decimal typo); GARAGED: row for \"street\" deleted (incomplete table).",
+    "expect": "imports as a draft but FAILS validation"
+  },
+  "HO_NAT_unsupported_formulas.xlsx": {
+    "description": "A value cell contains a formula (=C4*1.04). Formulas are never executed or guessed.",
+    "expect": "import BLOCKED: FORMULAS_UNSUPPORTED"
+  },
+  "HO_NAT_renamed_columns.xlsx": {
+    "description": "Non-profile layout: sheet \"Roof Age\" with headers \"Age From/Age To/Factor\". The pilot SUGGESTS a mapping but a person must confirm it.",
+    "expect": "suggestions need confirmation; correcting a suggestion is captured as feedback"
+  },
+  "HO_NAT_ambiguous_columns.xlsx": {
+    "description": "Two candidate value columns (\"factor\" and \"relativity\"), one blank cell, and an unrecognised sheet. Nothing is guessed.",
+    "expect": "ambiguous mapping flagged; MISSING_VALUE; unmapped sheet warning"
+  },
+  "UNSAFE_macro_parts.xlsx": {
+    "description": "A valid workbook with an embedded macro part added. Always rejected; never opened by the spreadsheet parser.",
+    "expect": "REJECTED at upload: MACROS"
+  },
+  "UNSAFE_external_link.xlsx": {
+    "description": "A valid workbook with an external link part added. Links are never followed.",
+    "expect": "REJECTED at upload: EXTERNAL_LINKS"
+  }
+}

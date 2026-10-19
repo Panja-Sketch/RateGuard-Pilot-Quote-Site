@@ -1,0 +1,30 @@
+{
+  "name": "rateguard-pilot-quote-site",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Synthetic insurance rating & quoting pilot (test target). Separate from RateGuard Enhanced. Not a real insurer.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "test": "node --test --test-concurrency=1 \"tests/*.test.js\"",
+    "test:ui": "node --test --test-concurrency=1 \"tests/ui/*.test.js\"",
+    "test:all": "npm test && npm run test:ui",
+    "seed:reset": "node scripts/reset-data.js",
+    "samples": "node scripts/generate-samples.js",
+    "openapi": "node scripts/build-openapi.js",
+    "ui:shots": "node scripts/ui-shots.js"
+  },
+  "dependencies": {
+    "exceljs": "^4.4.0",
+    "express": "^4.21.2",
+    "helmet": "^8.0.0",
+    "jszip": "^3.10.1"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^23.11.1"
+  }
+}
